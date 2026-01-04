@@ -1,15 +1,18 @@
 import streamlit as st
 from openai import OpenAI
-from apikey import api_data
 import os
 import speech_recognition as sr
 import pyttsx3
 import webbrowser
 
+from dotenv import load_dotenv
+load_dotenv()
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
 # ---------------- Existing Code ----------------
 Model = "gpt-4o-mini"
-client = OpenAI(api_key=api_data)
-
+client = OpenAI(api_key=OPENAI_API_KEY)
 def Reply(question):
     completion = client.chat.completions.create(
         model=Model,
